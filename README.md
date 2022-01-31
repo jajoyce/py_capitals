@@ -1,0 +1,1 @@
+Follow the capitals game instructions in [notion](https://peat-sparrow-54f.notion.site/State-Capitals-Lab-86cbed500ba2436780edfc95709c3f91). Once finished, create a pull request from this repo.
