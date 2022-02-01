@@ -165,10 +165,10 @@ def play_game():
         state['correct'] = 0
         state['incorrect'] = 0
     
-    while game_on:
+    total_correct = 0
+    total_answered = 0
 
-        total_correct = 0
-        total_answered = 0
+    while game_on:
 
         for state in states:
             answer = input(f"What is the capital of {state['name']}? ")
@@ -183,17 +183,19 @@ def play_game():
                 total_correct += 1
                 total_answered +=1
                 print(f"Yes, you got it! You've named the capital of {state['name']} correctly {state['correct']} time(s) out of {state['correct'] + state['incorrect']} total attempts.")
-                print(f"Total score: {total_correct / total_answered * 100}%  ({total_correct} correct out of {total_answered} answered)")
+                print(f"Total score: {int(total_correct / total_answered * 100)}%  ({total_correct} correct out of {total_answered} answered)")
             
             else:
                 state['incorrect'] += 1
                 total_answered +=1
                 print(f"Sorry, that's incorrect. You've named the capital of {state['name']} correctly {state['correct']} time(s) out of {state['correct'] + state['incorrect']} total attempts.")
-                print(f"Total score: {total_correct / total_answered * 100}%  ({total_correct} correct out of {total_answered} answered)")
+                print(f"Total score: {int(total_correct / total_answered * 100)}%  ({total_correct} correct out of {total_answered} answered)")
             
         play_again = input("You've answered for all 50 states! Want to play again? (Y/N): ")
 
-        if play_again.lower() != 'y':
+        if play_again.lower() == 'y':
+            states.sort(reverse = True, key = lambda state: state['incorrect'])
+        else:
             print("Thanks for playing! Goodbye.")
             game_on = False
 
