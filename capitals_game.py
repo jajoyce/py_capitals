@@ -171,7 +171,11 @@ def play_game():
     while game_on:
 
         for state in states:
-            answer = input(f"What is the capital of {state['name']}? ")
+            answer = input(f"What is the capital of {state['name']}? (Enter 'hint' for a hint or 'quit' to quit.) ")
+
+            while answer.lower() == 'hint':
+                print(f"HINT: The capital of {state['name']} starts with '{state['capital'][:3]}...' ")
+                answer = input(f"So... What is the capital of {state['name']}? ")
 
             if answer.lower() == 'quit':
                 print("Thanks for playing! Goodbye.")
