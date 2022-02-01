@@ -173,7 +173,12 @@ def play_game():
         for state in states:
             answer = input(f"What is the capital of {state['name']}? ")
 
-            if answer.lower() == state['capital'].lower():
+            if answer.lower() == 'quit':
+                print("Thanks for playing! Goodbye.")
+                game_on = False
+                return
+
+            elif answer.lower() == state['capital'].lower():
                 state['correct'] += 1
                 total_correct += 1
                 total_answered +=1
