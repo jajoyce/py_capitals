@@ -1,4 +1,6 @@
-# an list of state dictionaries
+import random 
+
+# a list of state dictionaries
 states = [
 {
     "name": "Alabama",
@@ -151,3 +153,35 @@ states = [
     "name": "Wyoming",
     "capital": "Cheyenne"
 }]
+
+def play_game():
+    print("Let's see how well you know your state capitals!")
+
+    game_on = True
+    
+    random.shuffle(states)
+
+    for state in states:
+        state['correct'] = 0
+        state['incorrect'] = 0
+    
+    while game_on:
+
+        for state in states:
+            answer = input(f"What is the capital of {state['name']}? ")
+
+            if answer.lower() == state['capital'].lower():
+                state['correct'] += 1
+                print(f"Yes, you got it! You've named the capital of {state['name']} correctly {state['correct']} time(s) out of {state['correct'] + state['incorrect']} total attempts.")
+            
+            else:
+                state['incorrect'] += 1
+                print(f"Sorry, that's incorrect. You've named the capital of {state['name']} correctly {state['correct']} time(s) out of {state['correct'] + state['incorrect']} total attempts.")
+        
+        play_again = input("You've answered for all 50 states! Want to play again? (Y/N): ")
+
+        if play_again.lower() != 'y':
+            print("Thanks for playing! Goodbye.")
+            game_on = False
+
+play_game()
